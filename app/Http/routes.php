@@ -15,20 +15,39 @@ Route::get('/', ['as' =>'home', function () {
     return view('welcome');
 }]);
 
+Route::get('/about/{id}','FirstController@show');
+
+Route::get('/articles',['uses'=>'Admin\CoreController@getArticles', 'as'=>'articles']);
+Route::get('/article/{id}',['uses'=>'Admin\CoreController@getArticle','as'=>'article'])/*->name()*/;
+
+/*
+Route::get('pages/add','Admin\CoreResource@add');
+Route::resource('/pages', 'Admin\CoreResource', ['only'=>['index','show']]); // /pages.index   pages.store
+*/
+
+Route::controller('/pages','PagesController',['getCreate'=>'pages.create']);
+//['only'=>['index','show']]
+//['except'=>['index','show']]
+
+/*
 Route::get('/article/{id}', ['as' =>'article', function ($id) {
     echo $id;
 }]);
-
+*/
+/*
 Route::get('/page', function () {
     return view('page');
 });
-
+*/
+/*
 //add params
 Route::get('/page/{id}', function($cat, $id){
     var_dump($cat);
     var_dump($id);
-})/*->where(['id'=>'[0-9]+','cat'=>'[A-Za-z0-9\-\_]+'])*/;
-
+});
+*/
+    /*->where(['id'=>'[0-9]+','cat'=>'[A-Za-z0-9\-\_]+'])*/
+/*
 //group of routes with prefix 'admin'
 Route::group(['prefix'=>'admin'],function(){
     Route::get('page/create', function(){
@@ -41,7 +60,7 @@ Route::group(['prefix'=>'admin'],function(){
        echo 'page/edit';
     });
 });
-
+*/
 //array with methods
 /*
 Route::match(['get','post'], '/path', function(){
