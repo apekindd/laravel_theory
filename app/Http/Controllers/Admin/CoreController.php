@@ -9,11 +9,16 @@ use App\Http\Controllers\Controller;
 
 class CoreController extends Controller
 {
+
+    /*public function __construct(){
+        $this->middleware('mymiddle');
+    }*/
+
     public function getArticles(){
 
     }
 
     public  function getArticle($id){
-
+        echo $id;
     }
 }
