@@ -24,6 +24,7 @@ Route::get('/articles',['uses'=>'Admin\CoreController@getArticles', 'as'=>'artic
 
 Route::get('/article/{page}',['uses'=>'Admin\CoreController@getArticle', 'middleware'=>'mymiddle:home','as'=>'article'])/*->middleware('mymiddle')->name()*/;
 
+Route::match(['get','post'], '/contact/{id?}',['uses'=>'Admin\ContactController@show','as'=>'contact']);
 
 /*
 Route::get('pages/add','Admin\CoreResource@add');
