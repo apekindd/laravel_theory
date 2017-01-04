@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use DB;
 //use Blade;
 //use Response;
 
@@ -19,6 +20,10 @@ class AppServiceProvider extends ServiceProvider
         /*Response::macro('myRes', function($value){
             return Response::make($value);
         });*/
+
+        DB::listen(function($query){
+            dump($query->sql);
+        });
     }
 
     /**
