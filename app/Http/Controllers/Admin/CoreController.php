@@ -6,16 +6,88 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
 
 class CoreController extends Controller
 {
+    protected static $articles;
 
-    /*public function __construct(){
-        $this->middleware('mymiddle');
-    }*/
+    public function __construct(){
+        //$this->middleware('mymiddle');
+    }
+
+    public static function addArticles($array){
+        return self::$articles[] = $array;
+    }
 
     public function getArticles(){
 
+
+        //SELECT!!!!!!!!!!!!1
+
+       //$articles = DB::table('articles')->get();
+       //$articles = DB::table('articles')->first();
+       //$articles = DB::table('articles')->value('name');
+        /*DB::table('articles')->chunk(2, function($articles){
+            foreach($articles as $article) {
+                CoreController::addArticles($article);
+            }
+        });*/
+
+        //$articles = DB::table('articles')->pluck('name');
+        //$articles = DB::table('articles')->count();
+        //$articles = DB::table('articles')->max('id');
+
+        //$articles = DB::table('articles')->distinct()->select('name')->get();
+
+        //WHERE, AND WHERE
+        //$query = DB::table('articles');
+        /*
+        $articles = $query->select()
+                                    ->where('id','>',1)
+                                    ->where('name','=','Blog post 4')
+                                        ->get();
+        */
+        //OR WHERE
+        /*
+        $query = DB::table('articles');
+        $articles = $query->select()->where([
+                ['id','>',2],
+                ['name','like','%post 3']
+            ])->orWhere([
+            ['id','=',1]
+        ])->get();
+        */
+
+        //BETWEEN
+        //$articles = DB::table('articles')->whereNotBetween('id',[2,4])->get();
+        //$articles = DB::table('articles')->whereIn('id',[2,4])->groupBy('name')->get();
+        //$articles = DB::table('articles')->take(2)->get();
+
+        //INSERT !!!!!!!!!!!!!!!!!!!!!
+
+        /*DB::table('articles')->insert([
+            ['name'=>'insert1','text'=>'insert1'],
+            ['name'=>'insert2','text'=>'insert2']
+        ]);*/
+
+        //UPDATE !!!!!!!!!!!!!!!!!!!!!
+        //DB::table('articles')->where('id',2)->update(['name'=>'hello world1']);
+
+
+        //DELETE !!!!!!!!!!!!!!!!!!!!!!!!!
+        //DB::table('articles')->where('id',2)->delete();
+
+        //LEFT JOIN
+        /*$articles = DB::table('articles')
+            ->leftJoin('articles','user.id','=','articles.user_id')
+            ->select('user.*','articles.name')
+            ->get();
+        */
+
+        $articles = DB::table('articles')->get();
+        dump($articles);
+        //dump(self::$articles);
     }
 
     public  function getArticle($id){
