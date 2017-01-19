@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Article;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -85,8 +86,52 @@ class CoreController extends Controller
             ->get();
         */
 
-        $articles = DB::table('articles')->get();
+       /* $articles = DB::table('articles')->get();
+        dump($articles);*/
+
+        //$articles = Article::where('id','>',2)->get();
+        //$articles = Article::all();
+        //$articles = Article::where('id',3)->first();
+        //$articles = Article::find([1,2,3]);
+
+        //Article::findOrFail(2);
+
+        /*$article = new Article();
+        $article->name = 'testAdd';
+        $article->text = 'TEXT HERE';
+        $article->img = 'no_img.png';
+
+        $articles = Article::all();
+
+        $article->save();
+        */
+
+        /*$article = Article::find(6);
+        $article->name = 'via Update Name';
+        $article->text = 'via Update Text';
+        $article->save();*/
+
+        /*Article::create([
+            'name'=>'hello',
+            'text'=>'sote text'
+        ]);*/
+
+        /*Article::firstOrCreate([
+            'name'=>'hello',
+            'text'=>'sote text'
+        ]);*/
+
+        //$article = Article::find(58);
+        //$article->delete();
+
+        //Article::destroy(5);
+        //Article::destroy([1,2]);
+
+
+
+        $articles = Article::withTrashed()->get();
         dump($articles);
+        return;
         //dump(self::$articles);
     }
 
