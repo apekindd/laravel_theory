@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Article;
+use App\Country;
+use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -22,6 +25,19 @@ class CoreController extends Controller
     }
 
     public function getArticles(){
+
+        //$user = User::find(1);
+        //$articles = Article::find(1);
+
+       // $country = Country::find(1);
+
+        //$article = $user->articles()->where('id','=',1)->get();
+
+        $role = Role::find(1);
+
+
+        dump($role->users);
+        return;
 
 
         //SELECT!!!!!!!!!!!!1
@@ -101,7 +117,7 @@ class CoreController extends Controller
         $article->text = 'TEXT HERE';
         $article->img = 'no_img.png';
 
-        $articles = Article::all();
+
 
         $article->save();
         */
@@ -129,7 +145,8 @@ class CoreController extends Controller
 
 
 
-        $articles = Article::withTrashed()->get();
+        //$articles = Article::withTrashed()->get();
+        $articles = Article::all();
         dump($articles);
         return;
         //dump(self::$articles);
