@@ -33,10 +33,62 @@ class CoreController extends Controller
 
         //$article = $user->articles()->where('id','=',1)->get();
 
-        $role = Role::find(1);
+        //$role = Role::find(1);
 
+        //Жадная загрузка
+        /*$articles = Article::with('user')->get();
+        */
 
-        dump($role->users);
+        /*$articles = Article::all();
+
+        $articles->load('user');
+       */
+
+       /* $users = User::with('articles','roles')->get();
+
+        */
+
+       //Выбрать юзеров у которы 3+ записей
+       /*
+        $users = User::has('articles', ">=", '3')->get();
+
+        foreach ($users as $user){
+            dump($user->articles);
+        }
+       */
+
+        $user = User::find(1);
+
+        $user->articles()->where('id',60)->update(['name'=>'Updated by user 1']);
+//        $article = new Article([
+//            'name'=>'Article of User1',
+//            'text'=> 'some text'
+//        ]);
+//
+//        $role = new Role(['name'=>'tester']);
+//        $user->roles()->save($role);
+
+        /*$user->articles()->saveMany([
+            new Article([
+                'name'=>'Article of User2',
+                'text'=> 'some text'
+            ]),
+            new Article([
+                'name'=>'Article of User3',
+                'text'=> 'some text'
+            ])
+        ]);*/
+
+        //$user->articles()->save($article);
+
+       /* $user->articles()->create([
+            'name'=>'Article of User111',
+            'text'=> 'some text222'
+        ]);
+*/
+        $article = Article::find(60);
+        dump($article);
+
         return;
 
 
