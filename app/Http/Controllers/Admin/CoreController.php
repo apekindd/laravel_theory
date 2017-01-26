@@ -26,6 +26,40 @@ class CoreController extends Controller
 
     public function getArticles(){
 
+
+        /*$country = Country::find(1);
+        $user = User::find(2);
+
+        $country->user()->associate($user);
+        $country->save();*/
+
+        /*$articles = Article::where('user_id','=',1)->get();
+        $user = User::find(2);
+
+        foreach ($articles as $article) {
+            $article->user()->associate($user);
+            $article->save();
+        }
+        dump($articles);*/
+
+        /*$user = User::find(2);
+        $role_id = Role::find(2)->id;
+
+        //$user->roles()->attach($role_id);
+        $user->roles()->detach($role_id);*/
+
+        $article = Article::find(60);
+        $article->text = ['test'=>'123','hello'=>['hello_id'=>'bobo']];
+        $article->save();
+        $article = Article::find(60);
+        //$article->name = 'ChangeName';
+        dump($article->toJson());
+        dump($article->toArray());
+
+        return;
+
+
+
         //$user = User::find(1);
         //$articles = Article::find(1);
 
@@ -57,9 +91,10 @@ class CoreController extends Controller
         }
        */
 
-        $user = User::find(1);
+        /*$user = User::find(1);
 
         $user->articles()->where('id',60)->update(['name'=>'Updated by user 1']);
+        */
 //        $article = new Article([
 //            'name'=>'Article of User1',
 //            'text'=> 'some text'
@@ -86,10 +121,12 @@ class CoreController extends Controller
             'text'=> 'some text222'
         ]);
 */
+       /*
         $article = Article::find(60);
         dump($article);
 
         return;
+       */
 
 
         //SELECT!!!!!!!!!!!!1
@@ -198,9 +235,9 @@ class CoreController extends Controller
 
 
         //$articles = Article::withTrashed()->get();
-        $articles = Article::all();
+        /*$articles = Article::all();
         dump($articles);
-        return;
+        return;*/
         //dump(self::$articles);
     }
 

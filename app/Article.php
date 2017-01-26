@@ -19,7 +19,23 @@ class Article extends Model
 
     protected $dates = ['deleted_at'];
 
+    protected $casts = [
+        'name'=>'boolean',
+        'text'=>'array'
+    ];
+
     public function user(){
         return $this->belongsTo('App\User');
     }
+
+    //Метод читатель
+    /*public function getNameAttribute($value){
+        return 'hello world - '.$value;
+    }*/
+
+    //Метод преобразователь
+    /*public function setNameAttribute($value){
+        //
+        $this->attributes['name'] = ' | ' .$value.' | ';
+    }*/
 }
