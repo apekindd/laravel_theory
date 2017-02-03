@@ -20,6 +20,10 @@ class ContactController extends Controller
             //save all post data in session
             //$request->flash();
             //return redirect()->route('contact');
+
+            $this->validate($request, [
+                "name"=>"required"
+            ]);
         }
 
         if(view()->exists('default.contact')) {

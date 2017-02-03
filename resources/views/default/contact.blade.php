@@ -4,17 +4,23 @@
 
 <div class="col-md-9">
 
-		<pre>
+		<!--<pre>
 		{{ print_r(Session::all()) }}
-		</pre>
+		</pre>-->
 
 	<div class="">
 		<h2>Contact us!</h2>
     </div>
 
-	<p>
-	This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.
-	</p>
+	@if (count($errors) > 0)
+		<div class="alert alert-danger">
+			<ul>
+				@foreach ($errors->all() as $error)
+					<li>{{ $error }}</li>
+				@endforeach
+			</ul>
+		</div>
+	@endif
 
 	<form method="post" action="{{ route('contact') }}">
 	  <div class="form-group">
