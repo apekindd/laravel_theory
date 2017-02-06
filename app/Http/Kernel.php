@@ -49,6 +49,8 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'mymiddle' => \App\Http\Middleware\Mymiddleware::class
+        'mymiddle1' =>  \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        'mymiddle2' =>  \Illuminate\Session\Middleware\StartSession::class,
+        'mymiddle3' =>  \App\Http\Middleware\VerifyCsrfToken::class,
     ];
 }
