@@ -30,6 +30,8 @@ class ContactRequest extends Request
 
     public function messages()
     {
-        return [];
+        return [
+            'name.required' => 'Поле :attribute ОБЯЗАТЕЛЬНОЕ!'
+        ];
     }
 }
