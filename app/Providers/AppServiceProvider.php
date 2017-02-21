@@ -17,13 +17,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-        /*Response::macro('myRes', function($value){
+       /* Response::macro('myRes', function($value){
             return Response::make($value);
         });*/
 
-        DB::listen(function($query){
+        /*DB::listen(function($query){
             dump($query->sql);
-        });
+        });*/
     }
 
     /**

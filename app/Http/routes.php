@@ -25,7 +25,7 @@ Route::get('/articles',['uses'=>'Admin\CoreController@getArticles', 'as'=>'artic
 Route::get('/article/{page}',['uses'=>'Admin\CoreController@getArticle', 'middleware'=>'mymiddle:home','as'=>'article'])/*->middleware('mymiddle')->name()*/;
 
 
-Route::get('/contact/{name?}', ['uses' => 'Admin\ContactController@show', 'as' => 'contact']);
+Route::get('/contact/{name?}', ['middleware'=>'auth','uses' => 'Admin\ContactController@show', 'as' => 'contact']);
 Route::post('/contact/{name?}', ['uses' => 'Admin\ContactController@store']);
 
 
@@ -85,3 +85,14 @@ Route::any('/path', function(){
 
 });
 */
+/*
+Route::auth();
+Route::get('/home', 'HomeController@index');
+*/
+Route::auth();
+//admin
+Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
+    //   admin/
+    Route::get('/',['uses'=>'Admin\AdminController@show','as'=>'admin_index']);
+    Route::get('/add/post',['uses'=>'Admin\AdminPostController@create','as'=>'admin_add_post']);
+});
