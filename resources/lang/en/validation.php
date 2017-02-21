@@ -95,6 +95,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'name' => [
+            'required' => 'Поле NAME обязательно для заполнения!',
+        ]
     ],
 
     /*
