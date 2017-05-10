@@ -4,20 +4,21 @@
 
 <div class="col-md-9">
 
-		<!--<pre>
-		{{ print_r(Session::all()) }}
-		</pre>-->
-
 	<div class="">
 		<h2>Contact us!</h2>
     </div>
 
-	@if (count($errors) > 0)
+	<p>
+	This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.
+	</p>
+	
+	@if(count($errors) > 0)
 		<div class="alert alert-danger">
 			<ul>
-				@foreach ($errors->all() as $error)
-					<li>{{ $error }}</li>
-				@endforeach
+				@foreach($errors->all() as $error)
+					<li>{{ $error}}</li>
+				@endforeach 
+				
 			</ul>
 		</div>
 	@endif
@@ -39,7 +40,6 @@
 	    <label for="text">Text</label>
 	    <textarea class="form-control" id="text" name="text" rows="3">{{ old('text') }}</textarea>
 	  </div>
-		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	  <button type="submit" class="btn btn-primary">Submit</button>
 	</form>
 </div>	

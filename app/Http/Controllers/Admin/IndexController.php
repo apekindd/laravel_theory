@@ -10,9 +10,14 @@ use App\Http\Controllers\Controller;
 class IndexController extends Controller
 {
     public function show() {
-        if(view()->exists('default.index')) {
-            return view('default.index',['title'=>'Index']);
-        }
-        abort(404);
-    }
+    	
+    	$array = array(
+    						'title'=>'Laravel Project',
+    						);
+		
+		if(view()->exists('default.index')) {
+			return view('default.index',$array);
+		}
+		abort(404);
+	}
 }

@@ -19,8 +19,10 @@ class CoreResource extends Controller
         //
         echo __METHOD__;
     }
-
-    public function add(){
+    
+    public function add()
+    {
+        //
         echo __METHOD__;
     }
 
@@ -35,9 +37,6 @@ class CoreResource extends Controller
         echo __METHOD__;
     }
 
-
-
-    // /pages POST
     /**
      * Store a newly created resource in storage.
      *
@@ -47,6 +46,7 @@ class CoreResource extends Controller
     public function store(Request $request)
     {
         //
+        
         print_r($_POST);
     }
 
@@ -62,8 +62,6 @@ class CoreResource extends Controller
         echo $id;
     }
 
-
-    // /pages/{id}/edit GET
     /**
      * Show the form for editing the specified resource.
      *
@@ -73,11 +71,8 @@ class CoreResource extends Controller
     public function edit($id)
     {
         //
-        echo __METHOD__;
     }
 
-
-    // /pages/{id} PUT
     /**
      * Update the specified resource in storage.
      *
@@ -88,11 +83,8 @@ class CoreResource extends Controller
     public function update(Request $request, $id)
     {
         //
-        echo __METHOD__;
     }
 
-
-    // /pages/{id} DELETE
     /**
      * Remove the specified resource from storage.
      *
@@ -102,6 +94,5 @@ class CoreResource extends Controller
     public function destroy($id)
     {
         //
-        echo __METHOD__;
     }
 }

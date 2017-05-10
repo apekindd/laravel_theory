@@ -2,97 +2,55 @@
 
 /*
 |--------------------------------------------------------------------------
-| Application Routes
+| Routes File
 |--------------------------------------------------------------------------
 |
-| Here is where you can register all of the routes for an application.
+| Here is where you will register all of the routes in an application.
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.
 |
 */
 
-/*Route::get('/', ['as' =>'home', function () {
-    return view('welcome');
-}]);*/
+Route::get('/', ['as'=>'home','uses'=>'Admin\IndexController@show']);
 
-Route::get('/',['as'=>'home','uses'=>'Admin\IndexController@show']);
-
-Route::get('/about',['as'=>'about', 'uses'=>'Admin\AboutController@show']);
-
-Route::get('/articles',['uses'=>'Admin\CoreController@getArticles', 'as'=>'articles']);
+Route::get('/about',['uses'=>'Admin\AboutController@show','as'=>'about']);
 
 
-Route::get('/article/{page}',['uses'=>'Admin\CoreController@getArticle', 'middleware'=>'mymiddle:home','as'=>'article'])/*->middleware('mymiddle')->name()*/;
+Route::get('/articles',['uses'=>'Admin\Core@getArticles','as'=>'articles']);
 
 
-Route::get('/contact/{name?}', ['middleware'=>'auth','uses' => 'Admin\ContactController@show', 'as' => 'contact']);
-Route::post('/contact/{name?}', ['uses' => 'Admin\ContactController@store']);
+Route::get('/article/{id}',['uses'=>'Admin\Core@getArticle','as'=>'article']);
 
+Route::get('/contact',['middleware' => ['auth'],'uses'=>'Admin\ContactController@show','as'=>'contact']);
+Route::post('/contact',['uses'=>'Admin\ContactController@store']);
 
-Route::match(['get', 'post'], '/test/{name?}', ['uses' => 'Admin\TestController@show', 'as' => 'test']);
 
 /*
-Route::get('pages/add','Admin\CoreResource@add');
-Route::resource('/pages', 'Admin\CoreResource', ['only'=>['index','show']]); // /pages.index   pages.store
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| This route group applies the "web" middleware group to every route
+| it contains. The "web" middleware group is defined in your HTTP
+| kernel and includes session state, CSRF protection, and more.
+|
 */
 
-Route::controller('/pages','PagesController',['getCreate'=>'pages.create']);
-//['only'=>['index','show']]
-//['except'=>['index','show']]
-
-/*
-Route::get('/article/{id}', ['as' =>'article', function ($id) {
-    echo $id;
-}]);
-*/
-/*
-Route::get('/page', function () {
-    return view('page');
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+    /*Route::get('/login',['uses'=>'Auth\MyAuthController@showLogin']);
+    Route::post('/login',['uses'=>'Auth\MyAuthController@authenticate']);*/
+    //Route::get('/home', 'HomeController@index');
 });
-*/
-/*
-//add params
-Route::get('/page/{id}', function($cat, $id){
-    var_dump($cat);
-    var_dump($id);
-});
-*/
-    /*->where(['id'=>'[0-9]+','cat'=>'[A-Za-z0-9\-\_]+'])*/
-/*
-//group of routes with prefix 'admin'
-Route::group(['prefix'=>'admin'],function(){
-    Route::get('page/create', function(){
-       //echo 'page/create';
-        //return redirect()->route('home');
-        return redirect()->route('article',['id'=>10]);
-       //echo route('home');
-    });
-    Route::get('page/edit', function(){
-       echo 'page/edit';
-    });
-});
-*/
-//array with methods
-/*
-Route::match(['get','post'], '/path', function(){
 
-});
-*/
 
-//any methods
-/*
-Route::any('/path', function(){
 
+//Route::auth();
+// admin/edit/post
+Route::group(['prefix'=>'admin','middleware'=>['web']],function() {
+	// admin/
+	Route::get('/',['uses'=>'Admin\AdminController@show','as'=>'admin_index']);
+	Route::get('/add/post',['uses'=>'Admin\AdminPostController@create','as'=>'admin_add_post']);
 });
-*/
-/*
-Route::auth();
-Route::get('/home', 'HomeController@index');
-*/
-Route::auth();
-//admin
-Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
-    //   admin/
-    Route::get('/',['uses'=>'Admin\AdminController@show','as'=>'admin_index']);
-    Route::get('/add/post',['uses'=>'Admin\AdminPostController@create','as'=>'admin_add_post']);
-});
+
+

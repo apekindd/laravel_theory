@@ -24,14 +24,16 @@ class ContactRequest extends Request
     public function rules()
     {
         return [
-            'name'=>'required'
+            'name'=>'required',
+            'email'=>'max:5|required'
         ];
     }
-
+    
     public function messages()
     {
         return [
-            'name.required' => 'Поле :attribute ОБЯЗАТЕЛЬНОЕ!'
+            'name.required' => 'ПОЛЕ :attribute обязательно к заполнению',
+            'email.max' => 'Максимально допустимое количество символов - :max',
         ];
     }
 }

@@ -28,8 +28,8 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
-
+    protected $redirectTo = '/';
+    
     protected $username = 'login';
 
     /**
@@ -39,7 +39,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        $this->middleware('guest', ['except' => 'logout']);
     }
 
     /**
@@ -54,7 +54,7 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'login' => 'required|max:255|unique:users,login',
             'email' => 'required|email|max:255',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|confirmed|min:6',
         ]);
     }
 

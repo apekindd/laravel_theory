@@ -15,13 +15,19 @@ class Mymiddleware
      */
     public function handle($request, Closure $next, $param)
     {
-
-        if($request->route('page') != 'pages' && $param == 'admin'){
-            return redirect()->route('home');
-        }
-        //$response = $next($request);
-
-
+        
+       if($request->route('page') != 'pages' && $param == 'admin') {
+			return redirect()->route('home');
+		}
+		//echo 'Middle ';
+        
+        //$responce = $next($request);
+        
+       // echo ' Middle ';
+        
+        //return $responce;
+        
         return $next($request);
+        
     }
 }

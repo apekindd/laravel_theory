@@ -6,17 +6,26 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+    //
+    public function __construct() {
+		
+		$this->middleware('auth');
+	}
+    
+    public function show() {
 
-    public function __construct()
-    {
-        //$this->middleware('auth');
-    }
+        /*$user = Auth::user();
 
-    public function show(){
+        if(!Auth::check()){
+            return redirect('/login');
+        }*/
 
-        return view('welcome');
-    }
+        //echo '<pre>';print_r($user); echo '</pre>';
+		
+		return view('welcome');
+	}
 }

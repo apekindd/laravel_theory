@@ -6,32 +6,23 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Response;
+
 use DB;
+
+use Illuminate\Http\Response;
+use Illuminate\Http\RedirectResponse;
 
 class AboutController extends Controller
 {
     //
     
     public function show() {
-		if(view()->exists('default.about')) {
-
-		    /*$view = view('default.about',['title'=>'About'])->render();
-		    return (new Response($view))->header('Content-Type','test');*/
-
-		    //return response()->view('default.about',['title'=>'123']);
-		    //return response()->download('robots.txt','mytext.txt');
-
-            //$articles = DB::select("SELECT * FROM `articles` WHERE id=:id",['id'=>4]);
-            //DB::insert("INSERT INTO `articles` (`name`,`text`) VALUES(?,?)",['test1','TEXT']);
-            //$ctn = DB::update("UPDATE `articles` SET `name` = ? WHERE id=?",['test123',8]);
-            //$ctn = DB::delete("DELETE FROM `articles` WHERE `id`=?",[8]);
-            $articles = DB::select("SELECT * FROM `articles`");
-            dump($articles);
-
-			return view('default.about',['title'=>'About']);
-
-            //return response()->myRes('hello');
+		
+		if(view()->exists('default.about')) {	
+		
+$page = DB::select("SELECT `name`,`text` FROm `pages` WHERE `alias` = :alias",['alias'=>'about']);
+			return view('default.about')->withPage($page[0])->withTitle('About our company');			
+			
 		}
 		abort(404);
 	}
